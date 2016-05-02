@@ -12,14 +12,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        Server.GetVideoInfo(id: 40).request(success: parse)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func parse(dic: [String: AnyObject]) {
+        print(#function)
     }
-
 
 }
 

@@ -18,7 +18,7 @@ protocol ServerType {
 
 extension ServerType {
     func request(success success: ([String: AnyObject] -> Void), failure: ((Int?, String?) -> Void)? = nil) {
-        let url = self.dynamicType.baseURL + api
+        let url = Self.baseURL + api
         switch method {
         case .Get:
             Request.get(url: url, params: params, success: success, failure: failure)
@@ -36,15 +36,19 @@ enum Server: ServerType {
     
     var api: String {
         switch self {
-        case .GetVideoInfo: return "api/id"
-        case .GetNotes:     return "api/noteFromId"
+        case .GetVideoInfo:
+            return "api/id"
+        case .GetNotes:
+            return "api/noteFromId"
         }
     }
     
     var method: ServerMethod {
         switch self {
-        case .GetVideoInfo: return .Get
-        case .GetNotes:     return .Post
+        case .GetVideoInfo:
+            return .Get
+        case .GetNotes:
+            return .Post
         }
     }
     
@@ -52,6 +56,7 @@ enum Server: ServerType {
         switch self {
         case let .GetVideoInfo(id):
             return ["courseId": id]
+            
         case let .GetNotes(id, page):
             return [
                 "courseId": id,
